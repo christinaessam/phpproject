@@ -11,5 +11,6 @@ foreach($symbol_array as $symbol_name=>$symbol_data) {
     $price = $symbol_data['price'];
     $result = mysqli_query($borsa_db, "update shares set price=$price where symbol='" . $symbol_name . "'");
 }
+include ("check_alarms.php"); //start checking alarms after updating the prices
 ?>
 
