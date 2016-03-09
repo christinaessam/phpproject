@@ -1,5 +1,5 @@
 <?php
-require_once ("db_connect.php"); //database connection
+require_once("model/db_connect.php"); //database connection
 include ("send_mail.php");
 //function will check if the alarm triggered or not
 function check_condition($last_price,$user_price,$isApove){
@@ -14,25 +14,22 @@ function check_condition($last_price,$user_price,$isApove){
 //select all alarms from database and check them
 $result = mysqli_query($borsa_db, "select * from alarms");
 while($row=mysqli_fetch_assoc($result)){
-    $last_price_result = mysqli_query($borsa_db, "select price from shares where id=".$row['share_id']);
+    $share_result = mysqli_query($borsa_db, "select * from shares where id=".$row['share_id']);
     if($row['status']){   //first see if alarm is enabled
-    $last_price=mysqli_fetch_assoc($last_price_result)['price'];
-if(check_condition($last_price,$row['value'],$row['condition'])){
+    $share_data=mysqli_fetch_assoc($share_result);
+if(check_condition($share_data['price'],$row['value'],$row['condition'])){
     // here means the alarm is triggered
     //check last triggered date of this alarm
 
     $timestamp = strtotime($row['date']);
     $last_trig= date("d", $timestamp);
-    if($last_trig==date("d")){
-    }else{
+    if($last_trig!=date("d")){
         //i will send you a mail so, get user data first and share info
         $result = mysqli_query($borsa_db, "select * from users where id=".$row['user_id']);
         $user=mysqli_fetch_assoc($result);
-        $result = mysqli_query($borsa_db, "select * from shares where id=".$row['share_id']);
-        $share=mysqli_fetch_assoc($result);
-        send_mail($user,$share); //send him a mail for this alarm
+        send_mail($user,$share_data); //send him a mail for this alarm
     }
-    //update last triggered time anyway
+    //update last triggered time anyway if sent mail or not
      mysqli_query($borsa_db, "update alarms set date ='".date('Y-m-d h:i:s', time())."'where id=".$row['id']);
 
 }

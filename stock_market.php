@@ -1,6 +1,6 @@
 <?php
 require_once ("class.stockMarketAPI.php");
-include ("db_connect.php");
+include("model/db_connect.php");
 ?>
 <?php
 $symbols=array('BAC','CHK', 'SDRL','AAPL');

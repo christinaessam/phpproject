@@ -1,3 +1,6 @@
+<?php
+$is_login=true;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,18 +10,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="ITI-Opensource36">
 
-    <title>Stylish Portfolio - Start Bootstrap Theme</title>
+    <title>Borsa</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="phpbootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/stylish-portfolio.css" rel="stylesheet">
+    <link href="phpbootstrap/css/stylish-portfolio.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="phpbootstrap/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -31,20 +34,38 @@
 </head>
 
 <body>
-
     <!-- Navigation -->
-    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+    <a id="menu-toggle" href="#" class="btn btn-success btn-lg toggle"><i class="fa fa-bars"></i></a>
     <nav id="sidebar-wrapper">
         <ul class="sidebar-nav">
-            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+            <a id="menu-close" href="#" class="btn btn-danger btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
             <li class="sidebar-brand">
-                <a href="#top"  onclick = $("#menu-close").click(); >Start Bootstrap</a>
+                <a href="#top"  onclick = $("#menu-close").click(); >Borsa</a>
+            </li>
+            <li >
+                <a href="#top"  onclick = $("#menu-close").click();>Home</a>
             </li>
             <li>
-                <a href="#top" onclick = $("#menu-close").click(); >Home</a>
+                <?php
+                if($is_login) {
+                    ?>
+                    <a href="#alarms" onclick = $("#menu-close").click(); >Alarms</a>
+                    <a href="#" onclick = $("#menu-close").click(); >My Profile</a>
+                    <a href="#" onclick = $("#menu-close").click(); >Log Out</a>
+
+                    <?php
+                }
+                else{
+                ?>
+                    <a href="#" onclick = $("#menu-close").click(); >Log In</a>
+                    <a href="#" onclick = $("#menu-close").click(); >Sign Up</a>
+
+                    <?php
+                }
+                ?>
             </li>
             <li>
-                <a href="#about" onclick = $("#menu-close").click(); >About</a>
+                <a href="#wall-street" onclick = $("#menu-close").click(); >Wall-Street</a>
             </li>
             <li>
                 <a href="#services" onclick = $("#menu-close").click(); >Services</a>
@@ -55,28 +76,45 @@
             <li>
                 <a href="#contact" onclick = $("#menu-close").click(); >Contact</a>
             </li>
+
         </ul>
     </nav>
 
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>Borsa Alarms</h1>
-            <br>
-            <a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
         </div>
     </header>
+    <div class="container">
 
     <!-- About -->
-    <section id="about" class="about">
-        <div class="container">
+    <section id="about" class="about center-block">
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
-                    <p class="lead">This theme features some wonderful photography courtesy of <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>.</p>
-                </div>
+                <div class="col-md-6  head_title">
+                    Borsa Alarm$
             </div>
-            <!-- /.row -->
+                <?php
+                if($is_login) {
+                    ?>
+                    <div class="col-md-3 text-center hidden-sm hidden-xs">
+                        <a href="#alarms" class="btn btn-dark btn-lg glyphicon glyphicon-bell "> My Alarms</a>
+                    </div>
+                    <div class="col-md-3 text-center  hidden-sm hidden-xs">
+                        <a href="#" class="btn btn-dark btn-lg glyphicon glyphicon-log-out glyphicon-lg"> Log out</a>
+                    </div>
+                    <?php
+                }else {
+                    ?>
+                    <div class="col-md-3 text-center  hidden-sm hidden-xs">
+                        <a href="#" class="btn btn-dark btn-lg glyphicon glyphicon-log-in glyphicon-lg"> Log In</a>
+                    </div>
+                    <div class="col-md-3 text-center  hidden-sm hidden-xs">
+                        <a href="#" class="btn btn-dark btn-lg glyphicon glyphicon-log-in glyphicon-lg"> Sign Up</a>
+                    </div>
+                    <?php
+                }
+                ?>
+                <!-- /.row -->
         </div>
         <!-- /.container -->
     </section>
@@ -151,49 +189,60 @@
         </div>
         <!-- /.container -->
     </section>
-
-    <!-- Callout -->
-    <aside class="callout">
-      <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Share</th>
-                <th>Last Price</th>
-                <th>Alert</th>
-                <th> Last Triggered</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><label><input type="checkbox" value="" id="check"></label></td>
-                <td><?php ?></td>
-                <td>john@example.com</td>
-                <td>Doe</td>
-                <td>Doe</td>
-                <td id="deltd"><button type="button" class="btn btn-danger" id="delbtn">Delete</button></td>
-            </tr>
-            <tr>
-                <td><label><input type="checkbox" value="" id="check"></label></td>
-                <td>Moe</td>
-                <td>mary@example.com</td>
-                <td>Doe</td>
-                <td>Doe</td>
-                <td id="deltd"><button type="button" class="btn btn-danger" id="delbtn">Delete</button></td>
-            </tr>
-            <tr>
-                <td><label><input type="checkbox" value="" id="check"></label></td>
-                <td>Dooley</td>
-                <td>july@example.com</td>
-                <td>Doe</td>
-                <td>Doe</td>
-                <td id="deltd"><button type="button" class="btn btn-danger" id="delbtn">Delete</button></td>
-            </tr>
-        </tbody>
-        </table>
-    </aside>
-
+    <?php
+    if($is_login) {
+        ?>
+        <h2 id="alarms" class="offset-1 btn-dark head_title">My Alarms</h2>
+        <section  class="services bg-warning table-responsive">
+            <!-- Callout -->
+            <table class="table table-bordered" id="alarms_table">
+                <thead class="table-responsive">
+                <tr>
+                    <th>Active</th>
+                    <th>Share</th>
+                    <th>Last Price</th>
+                    <th>Alert</th>
+                    <th> Last Triggered</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr id="1">
+                    <td><input type="checkbox" value="" class="disable_alarm"></td>
+                    <td><?php ?></td>
+                    <td>john@example.com</td>
+                    <td>Doe</td>
+                    <td>Doe</td>
+                    <td>
+                        <button type="button" class=" delbtn btn btn-danger delete_alarm" >Delete</button>
+                    </td>
+                </tr>
+                <tr id="2">
+                    <td><input type="checkbox" value="" class="disable_alarm"></td>
+                    <td>Moe</td>
+                    <td>mary@example.com</td>
+                    <td>Doe</td>
+                    <td>Doe</td>
+                    <td>
+                        <button type="button" class="btn btn-danger delbtn delete_alarm">Delete</button>
+                    </td>
+                </tr>
+                <tr id="3">
+                    <td><input type="checkbox" value=""  class="disable_alarm"></td>
+                    <td>Dooley</td>
+                    <td>july@example.com</td>
+                    <td>Doe</td>
+                    <td>Doe</td>
+                    <td>
+                        <button type="button" class="btn btn-danger delbtn delete_alarm">Delete</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <?php
+    }
+    ?>
     <!-- Portfolio -->
     <section id="portfolio" class="portfolio">
         <div class="container">
@@ -205,28 +254,28 @@
                         <div class="col-md-6">
                             <div class="portfolio-item">
                                 <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-1.jpg">
+                                    <img class="img-portfolio img-responsive" src="phpbootstrap/img/portfolio-1.jpg">
                                 </a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="portfolio-item">
                                 <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-2.jpg">
+                                    <img class="img-portfolio img-responsive" src="phpbootstrap/img/portfolio-2.jpg">
                                 </a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="portfolio-item">
                                 <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-3.jpg">
+                                    <img class="img-portfolio img-responsive" src="phpbootstrap/img/portfolio-3.jpg">
                                 </a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="portfolio-item">
                                 <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-4.jpg">
+                                    <img class="img-portfolio img-responsive" src="phpbootstrap/img/portfolio-4.jpg">
                                 </a>
                             </div>
                         </div>
@@ -241,6 +290,10 @@
         <!-- /.container -->
     </section>
 
+        <section id="wall-street">
+                <h2 class="head_title btn-dark">Wall $treet</h2>
+            <iframe id="wall-street" src="http://markets.wsj.com/" width="100%" height="600px">Wall Street Journal</iframe>
+        </section>
     <!-- Call to Action -->
     <aside class="call-to-action bg-primary">
         <div class="container">
@@ -255,26 +308,21 @@
     </aside>
 
     <!-- Map -->
-    <section id="contact" class="map">
-        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
-        <br />
-        <small>
-            <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-        </small>
-        </iframe>
-    </section>
+    <section id="contact" class="map ">
+        <h2 class="offset-1 btn-dark  head_title">You Can Find Us Here</h2>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d930.475018085345!2d29.906080368709915!3d31.193085036477736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x16cbff5d844ff34b!2z2YXYudmH2K8g2KrZg9mG2YjZhNmI2KzZitinINin2YTZhdi52YTZiNmF2KfYqiAtIElUSQ!5e0!3m2!1sar!2seg!4v1457467822804" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>    </section>
 
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h4><strong>Start Bootstrap</strong>
+                    <h4><strong>Open Source-36</strong>
                     </h4>
-                    <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
+                    <p>Alex-iti<br>Open Source Track</p>
                     <ul class="list-unstyled">
                         <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">name@example.com</a>
+                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="opensource.iti@gmail.com">opensource.iti@gmail.com</a>
                         </li>
                     </ul>
                     <br>
@@ -290,17 +338,18 @@
                         </li>
                     </ul>
                     <hr class="small">
-                    <p class="text-muted">Copyright &copy; Your Website 2014</p>
+                    <p class="text-muted">Copyright &copy; iti 2016</p>
                 </div>
             </div>
         </div>
     </footer>
-
+</div>
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="phpbootstrap/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="phpbootstrap/js/bootstrap.min.js"></script>
+    <script src="phpbootstrap/js/borsa.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script>
