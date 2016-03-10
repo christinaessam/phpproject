@@ -27,7 +27,7 @@ if(check_condition($share_data['price'],$row['value'],$row['condition'])){
         //i will send you a mail so, get user data first and share info
         $result = mysqli_query($borsa_db, "select * from users where id=".$row['user_id']);
         $user=mysqli_fetch_assoc($result);
-        send_mail($user,$share_data); //send him a mail for this alarm
+        send_mail($user,$share_data,$row['id']); //send him a mail for this alarm
     }
     //update last triggered time anyway if sent mail or not
      mysqli_query($borsa_db, "update alarms set date ='".date('Y-m-d h:i:s', time())."'where id=".$row['id']);

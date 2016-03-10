@@ -1,5 +1,5 @@
 <?php
-function send_mail($user_info,$share_info){
+function send_mail($user_info,$share_info,$alarm_id){
 
     $to = $user_info['mail'];
     $subject = "Borsa Alerts System";
@@ -51,6 +51,8 @@ font-size: large;
 <td>".date('Y-m-d h:i:s', time())."</td>
 </tr>
 </table>
+<a href='127.0.0.1/phpproject/model/disable_alarm.php?id=".$alarm_id."&status=0'>Disable this alarm</a>
+
 </body>
 </html>
 ";

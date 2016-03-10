@@ -1,5 +1,6 @@
 <?php
 $is_login=true;
+include "modal_alarms.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +59,7 @@ $is_login=true;
                 else{
                 ?>
                     <a href="#" onclick = $("#menu-close").click(); >Log In</a>
-                    <a href="#" onclick = $("#menu-close").click(); >Sign Up</a>
+                    <a href="#sign_up" onclick = $("#menu-close").click(); >Sign Up</a>
 
                     <?php
                 }
@@ -109,7 +110,7 @@ $is_login=true;
                         <a href="#" class="btn btn-dark btn-lg glyphicon glyphicon-log-in glyphicon-lg"> Log In</a>
                     </div>
                     <div class="col-md-3 text-center  hidden-sm hidden-xs">
-                        <a href="#" class="btn btn-dark btn-lg glyphicon glyphicon-log-in glyphicon-lg"> Sign Up</a>
+                        <a href="#sign_up" class="btn btn-dark btn-lg glyphicon glyphicon-log-in glyphicon-lg"> Sign Up</a>
                     </div>
                     <?php
                 }
@@ -117,6 +118,14 @@ $is_login=true;
                 <!-- /.row -->
         </div>
         <!-- /.container -->
+        <?php
+        if (!$is_login) {
+            ?>
+            <h2 class=" offset-1 btn-dark head_title" id="sign_up"> Sign Up </h2>
+            <section  class="services bg-primary"></section>
+            <?php
+        }
+        ?>
     </section>
 
     <!-- Services -->
@@ -234,7 +243,7 @@ $is_login=true;
                     <td>Doe</td>
                     <td>Doe</td>
                     <td>
-                        <button type="button" class="btn btn-danger delbtn delete_alarm">Delete</button>
+                        <button type="button" class="btn btn-danger delbtn delete_alarm" >Delete</button>
                     </td>
                 </tr>
                 </tbody>
@@ -309,7 +318,7 @@ $is_login=true;
 
     <!-- Map -->
     <section id="contact" class="map ">
-        <h2 class="offset-1 btn-dark  head_title">You Can Find Us Here</h2>
+        <h2 class="offset-1 btn-dark  head_title"> Find Us Here</h2>
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d930.475018085345!2d29.906080368709915!3d31.193085036477736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x16cbff5d844ff34b!2z2YXYudmH2K8g2KrZg9mG2YjZhNmI2KzZitinINin2YTZhdi52YTZiNmF2KfYqiAtIElUSQ!5e0!3m2!1sar!2seg!4v1457467822804" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>    </section>
 
     <!-- Footer -->
@@ -343,6 +352,7 @@ $is_login=true;
             </div>
         </div>
     </footer>
+        <!-- Modal -->
 </div>
     <!-- jQuery -->
     <script src="phpbootstrap/js/jquery.js"></script>
