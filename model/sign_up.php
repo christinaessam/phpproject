@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Created by PhpStorm.
  * User: hossam
@@ -15,11 +16,15 @@ if(isset($_REQUEST['UserEmail'])){
     $row=mysqli_fetch_assoc($result);
     if($row===null){
         $result = mysqli_query($borsa_db, "INSERT INTO users VALUES ('','$UserName', '$UserEmail','$UserPassword')");
-
+        $result = mysqli_query($borsa_db, "select * from users where user_email='$UserEmail'");
+        $row=mysqli_fetch_assoc($result);
+        $_SESSION['user']=$row;
+        echo "true";
     }else{
 //this email is used
+        echo "false";
     }
 }else{
-
+        echo "false";
     }
 }

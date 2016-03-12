@@ -1,5 +1,10 @@
 <?php
-$is_login=true;
+session_start();
+$is_login=false;
+if(isset($_SESSION['user'])){
+    $user=$_SESSION['user'];
+    $is_login=true;
+}
 include "modal_alarms.php";
 include ("model/db_connect.php");
 ?>
@@ -47,31 +52,37 @@ include ("model/db_connect.php");
             <li >
                 <a href="#top"  onclick = $("#menu-close").click();>Home</a>
             </li>
-            <li>
                 <?php
                 if($is_login) {
                     ?>
-                    <a href="#alarms" onclick = $("#menu-close").click(); >Alarms</a>
-                    <a href="#" onclick = $("#menu-close").click(); >My Profile</a>
-                    <a href="#" onclick = $("#menu-close").click(); >Log Out</a>
+            <li>
 
+            <a href="#alarms" onclick = $("#menu-close").click(); >Alarms</a>
+                </li>
+            <li>
+                    <a href="#" onclick = $("#menu-close").click(); >My Profile</a>
+                </li>
+            <li>
+                    <a href="#"  class="log_out_butt" onclick = $("#menu-close").click(); >Log Out</a>
+</li>
                     <?php
                 }
                 else{
                 ?>
-                    <a href="#" onclick = $("#menu-close").click(); >Log In</a>
-                    <a href="#sign_up" onclick = $("#menu-close").click(); >Sign Up</a>
-
+                    <li>
+                    <a href="#" class="login_but" onclick = $("#menu-close").click(); >Log In</a>
+                    </li>
+            <li>
+                        <a href="#sign_up" onclick = $("#menu-close").click(); >Sign Up</a>
+</li>
                     <?php
                 }
                 ?>
-            </li>
+
             <li>
                 <a href="#wall-street" onclick = $("#menu-close").click(); >Wall-Street</a>
             </li>
-            <li>
-                <a href="#services" onclick = $("#menu-close").click(); >Services</a>
-            </li>
+
             <li>
                 <a href="#contact" onclick = $("#menu-close").click(); >Contact</a>
             </li>
@@ -99,13 +110,13 @@ include ("model/db_connect.php");
                         <a href="#alarms" class="btn btn-dark btn-lg glyphicon glyphicon-bell "> My Alarms</a>
                     </div>
                     <div class="col-md-3 text-center  hidden-sm hidden-xs">
-                        <a href="#" class="btn btn-dark btn-lg glyphicon glyphicon-log-out glyphicon-lg"> Log out</a>
+                        <a href="#" class="btn btn-dark btn-lg glyphicon glyphicon-log-out glyphicon-lg log_out_butt"> Log out</a>
                     </div>
                     <?php
                 }else {
                     ?>
                     <div class="col-md-3 text-center  hidden-sm hidden-xs">
-                        <a href="#" class="btn btn-dark btn-lg glyphicon glyphicon-log-in glyphicon-lg"> Log In</a>
+                        <a href="#" class="btn btn-dark btn-lg glyphicon glyphicon-log-in glyphicon-lg login_but" > Log In</a>
                     </div>
                     <div class="col-md-3 text-center  hidden-sm hidden-xs">
                         <a href="#sign_up" class="btn btn-dark btn-lg glyphicon glyphicon-log-in glyphicon-lg"> Sign Up</a>
@@ -176,77 +187,6 @@ include ("model/db_connect.php");
         }
         ?>
     </section>
-
-    <!-- Services -->
-    <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-    <section id="services" class="services bg-primary">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <h2>Our Services</h2>
-                    <hr class="small">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-cloud fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-compass fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-flask fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-shield fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.row (nested) -->
-                </div>
-                <!-- /.col-lg-10 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </section>
     <?php
     if($is_login) {
         ?>
@@ -266,9 +206,8 @@ include ("model/db_connect.php");
                 </thead>
                 <tbody>
                 <?php
-
-                $name="hossam";
-                $result = mysqli_query($borsa_db , "select distinct a.alarm_id , s.share_name , s.share_symbol , s.share_price , a.status,a.condition , a.value , a.date  from alarms a , users u , shares s where a.share_id = s.share_id and a.user_id = (select user_id from users where user_id =1)");
+                $name=$user['user_name'];
+                $result = mysqli_query($borsa_db , "select distinct a.alarm_id , s.share_name , s.share_symbol , s.share_price , a.status,a.condition , a.value , a.date  from alarms a , users u , shares s where a.share_id = s.share_id and u.user_id=a.user_id and u.user_name= '$name'");
 
                 if(!empty($result))
                 {
@@ -388,11 +327,11 @@ include ("model/db_connect.php");
 </div>
     <!-- jQuery -->
     <script src="phpbootstrap/js/jquery.js"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="phpbootstrap/js/bootstrap.min.js"></script>
     <script src="phpbootstrap/js/borsa.js"></script>
     <script src="phpbootstrap/js/alarmtable.js"></script>
+    <script src="phpbootstrap/js/SignInVal.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script>

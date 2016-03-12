@@ -1,23 +1,12 @@
 <?php
+session_start();
 require_once ("db_connect.php");
-	/*'data':{
-				'userid':usr_id,
-				'name': name,
-				'symbol':symbol,
-				'condition':alarm_cond,
-				'alarm_value':alarm_value*/
 
-	$userid=$_GET['userid'];
+
 	$sharename=$_GET['name'];
 	$sharesymbol=$_GET['symbol'];
 	$alarmcondition=$_GET['condition'];
 	$alarmvalue=$_GET['alarm_value'];
-
-	/*$userid=1;
-	$sharename="share1";
-	$sharesymbol="sh1";
-	$alarmcondition=1;
-	$alarmvalue=20;*/
 
 	$query =mysqli_query($borsa_db,"select share_id from shares where share_name=\"".$sharename."\"");
 	if (!empty($query))
@@ -26,7 +15,7 @@ require_once ("db_connect.php");
 		$shareid=$row['share_id'];
 		}
 	}
-	$result = mysqli_query($borsa_db , "insert into alarms values(\"\",".$shareid.",".$userid.",1,".$alarmcondition.",".$alarmvalue.",\"\")"); // function to run queries in database
+	$result = mysqli_query($borsa_db , "insert into alarms values(\"\",".$shareid.",".$_SESSION['user']['user_id'].",1,".$alarmcondition.",".$alarmvalue.",\"\")"); // function to run queries in database
 	$result=mysqli_query($borsa_db,"select max(alarm_id) from alarms");
 	if(!empty($result))
 	{

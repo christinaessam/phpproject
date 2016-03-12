@@ -176,6 +176,17 @@ hr.small {
     font-weight: 600;
     text-align: center;
 }
+.modal-header_log, h4, .close {
+    background-color: #5cb85c;
+    color:white !important;
+    text-align: center;
+    font-size: 30px;
+}
+.modal-footer_log {
+    background-color: #f9f9f9;
+padding: 30px;
+}
+
 .modal-body{
     font-size: 20px;
     font-weight: 500;
