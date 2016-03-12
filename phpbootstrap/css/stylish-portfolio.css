@@ -166,6 +166,9 @@ hr.small {
     background-size: cover;
     -o-background-size: cover;
 }
+.mylabel{
+    width: 270px;
+}
 .modal-header{
     background-color: #ac2925;
     color: white;

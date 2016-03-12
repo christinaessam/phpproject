@@ -1,6 +1,7 @@
 <?php
 $is_login=true;
 include "modal_alarms.php";
+include ("model/db_connect.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,7 +84,7 @@ include "modal_alarms.php";
         <div class="text-vertical-center">
         </div>
     </header>
-    <div class="container">
+    <div class="container-fluid">
 
     <!-- About -->
     <section id="about" class="about center-block">
@@ -119,7 +120,58 @@ include "modal_alarms.php";
         if (!$is_login) {
             ?>
             <h2 class=" offset-1 btn-dark head_title" id="sign_up"> Sign Up </h2>
-            <section  class="services bg-primary"></section>
+            <section  class="services bg-success ">
+                <div class="row">
+                    <div class="col-md-7">
+                                <!-- -->
+                        <div class="form-group">
+                            <label  for="username" class="col-md-3 control-label">Email</label>
+
+                        <div class="input-group">
+                                        <span class="input-group-addon"><i class="icon-envelope icon-2x"></i></span>
+                                        <input id="email" class="form-control input-lg" placeholder="Email" required="required" maxlength="100" type="text" name="email"  >
+                                    </div>
+                            </div>
+                        <br>
+                        <div class="form-group">
+                            <label  for="username" class="col-md-3 control-label">User Name</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic_addon1">@</span>
+                                        <input type="text"  id ="user_name" name="user_name" class="form-control input-lg" placeholder="Username" aria-describedby="basic_addon1">
+                                    </div>
+</div>
+                        <br>
+
+                        <div class="form-group">
+                            <label  for="username" class="col-md-3 control-label">Password</label>
+
+                        <div class="input-group">
+                                        <span class="input-group-addon"><i class="icon-asterisk icon-2x"></i></span>
+                                        <input id="password" class="form-control input-lg" placeholder="Password" required="required" maxlength="60" type="password" name="password" >
+                                    </div>
+                            </div>
+                            <br>
+                        <div class="form-group">
+                            <label  for="username" class="col-md-3 control-label">Confirm Password</label>
+
+                        <div class="input-group">
+                                        <span class="input-group-addon"><i class="icon-asterisk icon-2x"></i></span>
+                                        <input id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" required="required" maxlength="60" type="password" name="password_confirmation" >
+                                    </div>
+                            </div>
+                            <br>
+                                    <div class="form-group">
+                                        <button  id="btn_sign_up" class="btn btn-block btn-primary btn-lg">Sign Up</button>
+                                    </div>
+                                <div class="form-group">
+                                    <div class="topCushion">Already a member? <a href="SignIn.html">Login</a></div>
+                                </div>
+                                <div class="form-group">
+                                    <p>By clicking on "Sign Up", you agree to the <a href="#" >Terms of Service</a> and the <a href="#" >Privacy Policy</a>.</p>
+                                </div>
+                    </div><!-- end of column 2 -->
+                </div><!-- end of well row -->
+            </section>
             <?php
         }
         ?>
@@ -213,38 +265,68 @@ include "modal_alarms.php";
                 </tr>
                 </thead>
                 <tbody>
-                <tr id="1">
-                    <td><input type="checkbox" value="" class="disable_alarm"></td>
-                    <td><?php ?></td>
-                    <td>john@example.com</td>
-                    <td>Doe</td>
-                    <td>Doe</td>
-                    <td>
-                        <button type="button" class=" delbtn btn btn-danger delete_alarm" >Delete</button>
-                    </td>
-                </tr>
-                <tr id="2">
-                    <td><input type="checkbox" value="" class="disable_alarm"></td>
-                    <td>Moe</td>
-                    <td>mary@example.com</td>
-                    <td>Doe</td>
-                    <td>Doe</td>
-                    <td>
-                        <button type="button" class="btn btn-danger delbtn delete_alarm">Delete</button>
-                    </td>
-                </tr>
-                <tr id="3">
-                    <td><input type="checkbox" value=""  class="disable_alarm"></td>
-                    <td>Dooley</td>
-                    <td>july@example.com</td>
-                    <td>Doe</td>
-                    <td>Doe</td>
-                    <td>
-                        <button type="button" class="btn btn-danger delbtn delete_alarm" >Delete</button>
-                    </td>
-                </tr>
+                <?php
+
+                $name="hossam";
+                $result = mysqli_query($borsa_db , "select distinct a.alarm_id , s.share_name , s.share_symbol , s.share_price , a.status,a.condition , a.value , a.date  from alarms a , users u , shares s where a.share_id = s.share_id and a.user_id = (select user_id from users where user_id =1)");
+
+                if(!empty($result))
+                {
+                    while ($row=mysqli_fetch_assoc($result)) {
+                        echo "<tr id=".'"'.$row['alarm_id'].'"'.">";
+                        if($row['status']==1)
+                            echo '<td><input type="checkbox" value="" class="disable_alarm" id="check" checked></td>';
+                        else
+                            echo '<td><input type="checkbox" value="" class="disable_alarm" id="check"></td>';
+                        $share=$row['share_symbol']." ( ".$row['share_name']." )";
+                        if($row['condition']==1)
+                            $cond='goes above';
+                        else
+                            $cond='drops below';
+                        $alert =$cond . $row['value'];
+                        echo '<td>'.$share.'</td>';
+                        echo '<td>'.$row['share_price'].'</td>';
+                        echo '<td>'.$alert.'</td>';
+                        echo '<td>'.$row['date'].'</td>';
+                        echo '<td><button type="button" class="btn btn-danger delete_alarm">Delete</button></td>';
+                        echo "</tr>";
+                    }
+                }
+                ?>
                 </tbody>
             </table>
+
+            <kbd><span class="glyphicon glyphicon-dashboard"></span>Add Alarm </kbd>
+            <br>
+            <div class="btn-group col-md-3 col-lg-3">
+                <button type="button" class="btn btn-default dropdown-toggle mylabel mydrp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    choose share <span class="caret"></span>
+                </button>
+                <ul class="mylabel dropdown-menu">
+                    <?php
+                    $result = mysqli_query($borsa_db , "select share_name,share_symbol from shares");
+                    if (!empty($result))
+                    {
+                        while ($row=mysqli_fetch_assoc($result)) {
+                            $share_option=$row['share_symbol']."(".$row['share_name'].")";
+                            echo '<li class="my_option"><a class="mydrpelm">'.$share_option.'</a></li>';
+                        }
+                    }
+
+                    ?>
+                </ul>
+            </div>
+            <!--h3>Send me mail when the share.. </h3-->
+            <div class="radio col-md-3 col-lg-3">
+                <label><input type="radio" name="optradio" value="0">Drops Below</label>
+                <label><input type="radio" name="optradio" value="1">Goes Above</label>
+            </div>
+            <div class="col-md-3 col-lg-3">
+                <input class="form-control" id="alarm_value" type="text" placeholder="Enter Value">
+            </div>
+            <div class="col-md-3 col-lg-2 col-md-offset-1">
+            <button type="button" class="btn btn-success" id="addalarm"> Add Alarm </button>
+            </div>
         </section>
         <?php
     }
@@ -310,6 +392,7 @@ include "modal_alarms.php";
     <!-- Bootstrap Core JavaScript -->
     <script src="phpbootstrap/js/bootstrap.min.js"></script>
     <script src="phpbootstrap/js/borsa.js"></script>
+    <script src="phpbootstrap/js/alarmtable.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script>
