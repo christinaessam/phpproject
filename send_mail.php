@@ -1,7 +1,7 @@
 <?php
 function send_mail($user_info,$share_info,$alarm_id){
 
-    $to = $user_info['mail'];
+    $to = $user_info['user_email'];
     $subject = "Borsa Alerts System";
     $message = "
 <html>
@@ -33,8 +33,8 @@ font-size: large;
 </head>
 <body>
 <h1>Take care of your shares</h1>
-<p>Hello ".$user_info['name']."
-<br>this mail was sent to you due to  to your alarm on the following share:</p>
+<p>Hello ".$user_info['user_name']."
+<br>this mail was sent to you due to your alarm on the following share:</p>
 <table border='1'>
 <tr>
 <th>Share symbol</th>
@@ -45,9 +45,9 @@ font-size: large;
 
 </tr>
 <tr>
-<td>".$share_info['symbol']."</td>
-<td>".$share_info['name']."</td>
-<td>".$share_info['price']."</td>
+<td>".$share_info['share_symbol']."</td>
+<td>".$share_info['share_name']."</td>
+<td>".$share_info['share_price']."</td>
 <td>".date('Y-m-d h:i:s', time())."</td>
 </tr>
 </table>
