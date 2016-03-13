@@ -60,7 +60,7 @@ include ("model/db_connect.php");
             <a href="#alarms" onclick = $("#menu-close").click(); >Alarms</a>
                 </li>
             <li>
-                    <a href="#" onclick = $("#menu-close").click(); >My Profile</a>
+                    <a id="update_btn" onclick = $("#menu-close").click(); >My Profile</a>
                 </li>
             <li>
                     <a href="#"  class="log_out_butt" onclick = $("#menu-close").click(); >Log Out</a>
@@ -137,9 +137,8 @@ include ("model/db_connect.php");
                                 <!-- -->
                         <div class="form-group">
                             <label  for="username" class="col-md-3 control-label">Email</label>
-
                         <div class="input-group">
-                                        <span class="input-group-addon"><i class="icon-envelope icon-2x"></i></span>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                                         <input id="email" class="form-control input-lg" placeholder="Email" required="required" maxlength="100" type="text" name="email"  >
                                     </div>
                             </div>
@@ -157,7 +156,7 @@ include ("model/db_connect.php");
                             <label  for="username" class="col-md-3 control-label">Password</label>
 
                         <div class="input-group">
-                                        <span class="input-group-addon"><i class="icon-asterisk icon-2x"></i></span>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                         <input id="password" class="form-control input-lg" placeholder="Password" required="required" maxlength="60" type="password" name="password" >
                                     </div>
                             </div>
@@ -166,7 +165,7 @@ include ("model/db_connect.php");
                             <label  for="username" class="col-md-3 control-label">Confirm Password</label>
 
                         <div class="input-group">
-                                        <span class="input-group-addon"><i class="icon-asterisk icon-2x"></i></span>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                         <input id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" required="required" maxlength="60" type="password" name="password_confirmation" >
                                     </div>
                             </div>
@@ -274,19 +273,6 @@ include ("model/db_connect.php");
                 <h2 class="head_title btn-dark">Wall $treet</h2>
             <iframe id="wall-street" src="http://markets.wsj.com/" width="100%" height="600px">Wall Street Journal</iframe>
         </section>
-    <!-- Call to Action -->
-    <aside class="call-to-action bg-primary">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h3>The buttons below are impossible to resist.</h3>
-                    <a href="#" class="btn btn-lg btn-light">Click Me!</a>
-                    <a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
-                </div>
-            </div>
-        </div>
-    </aside>
-
     <!-- Map -->
     <section id="contact" class="map ">
         <h2 class="offset-1 btn-dark  head_title"> Find Us Here</h2>
@@ -332,6 +318,7 @@ include ("model/db_connect.php");
     <script src="phpbootstrap/js/borsa.js"></script>
     <script src="phpbootstrap/js/alarmtable.js"></script>
     <script src="phpbootstrap/js/SignInVal.js"></script>
+    <script src="phpbootstrap/js/update_profile.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script>

@@ -25,33 +25,33 @@ $(".log_out_butt").click(function(){
 
 function email_reg(){
     var emailRegex = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
-    $(".form-group").eq(2).removeClass("has-error");
+    $(".form-group").eq(6).removeClass("has-error");
     if (!$("#email").val().match(emailRegex)){
         $("#email").val("");
-        $(".form-group").eq(2).addClass("has-error");
+        $(".form-group").eq(6).addClass("has-error");
     }
 }
     function user_reg(){
         var userName=  /^[a-z]{6,18}$/i;
-        $(".form-group").eq(3).removeClass("has-error");
+        $(".form-group").eq(7).removeClass("has-error");
         if (!$("#user_name").val().match(userName)){
             $("#user_name").val("");
-            $(".form-group").eq(3).addClass("has-error");
+            $(".form-group").eq(7).addClass("has-error");
         }
     }
     function passwd_reg(){
         var passwordRegex = /^[a-z0-9_-]{6,18}$/i;
-        $(".form-group").eq(4).removeClass("has-error");
+        $(".form-group").eq(8).removeClass("has-error");
         if (!$("#password").val().match(passwordRegex)){
             $("#password").val("");
-            $(".form-group").eq(4).addClass("has-error");
+            $(".form-group").eq(8).addClass("has-error");
         }
     }
     function conf_passwd(){
-        $(".form-group").eq(5).removeClass("has-error");
+        $(".form-group").eq(9).removeClass("has-error");
         if ($("#password_confirmation").val()!==$("#password").val()){
             $("#password_confirmation").val("");
-            $(".form-group").eq(5).addClass("has-error");
+            $(".form-group").eq(9).addClass("has-error");
         }
     }
     //fun to sign up
