@@ -174,7 +174,7 @@ include ("model/db_connect.php");
                                         <button  id="btn_sign_up" class="btn btn-block btn-primary btn-lg">Sign Up</button>
                                     </div>
                                 <div class="form-group">
-                                    <div class="topCushion">Already a member? <a href="SignIn.html">Login</a></div>
+                                    <div class="topCushion">Already a member? <a class="login_but" >Login</a></div>
                                 </div>
                                 <div class="form-group">
                                     <p>By clicking on "Sign Up", you agree to the <a href="#" >Terms of Service</a> and the <a href="#" >Privacy Policy</a>.</p>

@@ -1,7 +1,7 @@
 <?php 
     //Upload a blank cookie.txt to the same directory as this file with a CHMOD/Permission to 777
     function login($url)
-	{
+    {
         $fp = fopen("cookie.txt", "w");
         fclose($fp);
         $login = curl_init();
@@ -13,28 +13,28 @@
         curl_setopt($login, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
         curl_setopt($login, CURLOPT_FOLLOWLOCATION, TRUE);
         curl_setopt($login, CURLOPT_POST, TRUE);
-		
-		$username[] = ['ibtehal990','user1','user2','user3'];
-        $password[]= ['rootroot','pass1','pass2','pass3'];
-      
-		
-		for($i=0;$i<4;i++)
+
+        $username[] = ['ibtehal990', 'user1', 'user2', 'user3'];
+        $password[] = ['rootroot', 'pass1', 'pass2', 'pass3'];
+
+
+        for ($i = 0; $i < 4; $i++)
 		{
-           $data = array(  
-           'username' => $username[$i],
-    'password' => $password[$i]
-         );
-		
-		
-        curl_setopt($login, CURLOPT_POSTFIELDS, http_build_query($data));
-		//curl_setopt($login, CURLOPT_FOLLOWLOCATION, true);
-        ob_start();
-        return curl_exec ($login);
-			}
+            $data = array(
+                'username' => $username[$i],
+                'password' => $password[$i]
+            );
+
+
+            curl_setopt($login, CURLOPT_POSTFIELDS, http_build_query($data));
+            //curl_setopt($login, CURLOPT_FOLLOWLOCATION, true);
+            ob_start();
+            return curl_exec($login);
+        }
         ob_end_clean();
-        curl_close ($login);
-        unset($login);    
-    }        
+        curl_close($login);
+        unset($login);
+    }
 
 
 
@@ -82,6 +82,6 @@
     ?>
 
 <?php
-  register("registration page here");
-  login("login page here");
+  register("http://localhost/phpproject/model/sign_up.php");
+  login("http://localhost/phpproject/model/SignInValidation.php");
 

@@ -61,7 +61,7 @@
             <div class="modal-footer_log">
                 <button type="submit" class="btn btn-danger btn-default" data-dismiss="modal"  ><span class="glyphicon glyphicon-remove"></span> Cancel</button>
                 <div class="pull-right">
-                <p>Not a member? <a href="#">Sign Up</a></p>
+                <p>Not a member? <a href="#sign_up" >Sign Up</a></p>
                 <p>Forgot <a href="#">Password?</a></p>
                 </div>
             </div>

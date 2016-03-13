@@ -23,7 +23,7 @@ if(check_condition($share_data['share_price'],$row['value'],$row['condition'])){
 
     $timestamp = strtotime($row['date']);
     $last_trig= date("d", $timestamp);
-    if($last_trig==date("d")){
+    if($last_trig!=date("d")){
         //i will send you a mail so, get user data first and share info
         $result = mysqli_query($borsa_db, "select * from users where user_id=".$row['user_id']);
         $user=mysqli_fetch_assoc($result);
